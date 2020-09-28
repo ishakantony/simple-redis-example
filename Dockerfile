@@ -20,4 +20,6 @@ COPY --from=builder /app/views/. ./views/
 
 RUN yarn install --production
 
+EXPOSE 3000
+
 CMD ["yarn", "start"]
