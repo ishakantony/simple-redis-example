@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  simple-redis-example:
+    image: ishakantony/simple-redis-example
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      REDIS_HOST: "redis"
+      REDIS_PORT: 6379
+      PORT: 3000
+    depends_on:
+      - redis
+  redis:
+    image: redis

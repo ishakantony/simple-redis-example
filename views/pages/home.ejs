@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redis Example</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>HELLO!</h1>
+          <p>
+            If you don't add any data in 10 seconds, the next time you refresh,
+            all of the data will be lost
+          </p>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col">
+          <div class="progress" id="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <% items.forEach(function(item) {%>
+            <li class="list-group-item"><%=item%></li>
+            <%});%>
+          </ul>
+        </div>
+      </div>
+      <form method="post" action="/">
+        <div class="row my-3">
+          <div class="col col-lg-10">
+            <input
+              type="text"
+              class="form-control"
+              name="item"
+              placeholder="Item"
+            />
+          </div>
+          <div class="col col-lg-2">
+            <button type="submit" class="btn btn-primary btn-block">ADD</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const progressBarEl = document.getElementById('progress-bar')
+      let currentWidth = 100
+      const decreaseBy = 100 / 10
+      let interval = setInterval(() => {
+        if (currentWidth > 0) {
+          currentWidth = currentWidth - decreaseBy
+          progressBarEl.style.width = `${currentWidth}%`
+        } else {
+          clearInterval(interval)
+        }
+      }, 1000)
+    </script>
+  </body>
+</html>
